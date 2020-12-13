@@ -1,0 +1,26 @@
+<div class="row clearfix">
+  <div class="col-md-12 header-info">
+    <h1>Wheather in {{dataWeather.name}}, {{dataWeather.sys.country}}</h1>
+    <p>{{dateNow | date:'HH:mm MMM d' }}</p>
+  </div>
+</div>
+<div class="card mx-auto">
+  <div class="card-body">
+    <div class="row clearfix">
+        <div class="weatherInfo">
+          <div class="temperature"><span>{{dataWeather.main.temp}}&deg;C</span></div>
+          <div class="clouds">
+            <img src="https://openweathermap.org/img/w/{{dataWeather.weather[0].icon}}.png" alt="">
+            <p>{{dataWeather.weather[0].description}}</p>
+          </div>
+        </div>
+        <div class="details my-auto">
+          <pre>Máx <span>&#09;{{dataWeather.main.temp_max}}&deg;C</span></pre>
+          <pre>Min <span>&#09;{{dataWeather.main.temp_min}}&deg;C</span></pre>
+          <pre>Sunrise <span>&#09;{{dataWeather.sys.sunrise}}</span></pre>
+          <pre>Sunset <span>&#09;{{dataWeather.sys.sunset}}</span></pre>
+        </div>
+    </div>
+    <div class="row clearfix"></div>
+  </div>
+</div>

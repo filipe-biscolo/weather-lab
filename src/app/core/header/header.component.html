@@ -1,0 +1,28 @@
+<header
+  [ngClass]="{
+  'header-search':url==='search',
+  'header-details':url==='details'
+  }">
+  <section class="container column">
+    <div class="header-item" *ngIf="url==='search'">
+      <p>WEATHER IN YOUR CITY</p>
+    </div>
+    <div class="header-item">
+      <form [formGroup]="formulario">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Your city name"
+          aria-label="Your city name"
+          aria-describedby="basic-addon2"
+          id="search"
+          formControlName="search">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">Button</button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </section>    
+</header>

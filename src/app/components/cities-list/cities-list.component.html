@@ -1,0 +1,18 @@
+<ng-container *ngFor="let city of arrCities">
+  <article class="widget" routerLink="/details/{{city.id}}">
+    <div class="weatherIcon"><i class="wi wi-day-cloudy"></i></div>
+    <div class="weatherInfo">
+      <div class="temperature"><span>{{city.main.temp}}&deg;</span></div>
+    </div>
+    <div class="details">
+      <span>{{city.name}}, {{city.sys.country}} <img
+          src="http://openweathermap.org/images/flags/{{city.sys.country.toLowerCase()}}.png" alt=""></span>
+      <pre>Máx <span>&#09;{{city.main.temp_max}}&deg;</span></pre>
+      <pre>Min <span>&#09;{{city.main.temp_min}}&deg;</span></pre>
+    </div>
+    <div class="clouds">
+      <img src="https://openweathermap.org/img/w/{{city.weather[0].icon}}.png" alt="">
+      <p>{{city.weather[0].description}}</p>
+    </div>
+  </article>
+</ng-container>
