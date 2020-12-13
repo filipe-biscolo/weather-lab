@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
 
 const apiURL = 'https://api.openweathermap.org/data/2.5';
 const appID = '76d1b43ba3695cfae59aa9f7dc9b4877';
@@ -31,5 +32,9 @@ export class WeatherService {
 
   getWeatherByCityID(cityID) {
     return this.http.get(`${apiURL}/weather?id=${cityID}&appid=${appID}&units=metric`);
+  }
+
+  getForecastByLocationID(locationID): Observable<any> {
+    return this.http.get<any>(`${apiURL}/forecast?id=${locationID}&appid=${appID}&units=metric`);
   }
 }

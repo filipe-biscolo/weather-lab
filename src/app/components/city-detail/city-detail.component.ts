@@ -1,19 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WeatherService } from '../weather.service';
 
 import fromUnixTime from 'date-fns/fromUnixTime';
 import format from 'date-fns/format'
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-city-detail',
   templateUrl: './city-detail.component.html',
   styleUrls: ['./city-detail.component.css']
 })
-export class CityDetailComponent implements OnInit {
+export class CityDetailComponent implements OnInit, OnDestroy {
 
   dataWeather: any;
+  arrForecast: Array<any> = [];
   dateNow = new Date();
+
+  private subscriptionActivatedRoute: Subscription;
+  private subscriptionGetWeatherByCityID: Subscription;
+  private subscriptionGetForecastByLocationID: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,25 +43,42 @@ export class CityDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.weatherService.sendHeaderChange('details');
+    this.subscriptionActivatedRoute = 
     this.activatedRoute.params.subscribe(params => {
-      this.weatherService.getWeatherByCityID(params.id)
-        .subscribe(
-          data => {
-            console.log('data', data)
-            this.dataWeather = data;
-            this.dataWeather.sys.sunrise = format(fromUnixTime(this.dataWeather.sys.sunrise), 'HH:mm');
-            this.dataWeather.sys.sunset = format(fromUnixTime(this.dataWeather.sys.sunset), 'HH:mm');
-          },
-          err => console.error(err)
-        );
+      this.loadCityData(params.id);
+      this.loadCityForecast(params.id);
     });
   }
 
-  convertTime(time) {
-    time = new Date(time * 1000);
-    time = time.toISOString().match(/(\d{2}:\d{2}:\d{2})/);
+  ngOnDestroy() {
+    this.subscriptionActivatedRoute.unsubscribe();
+    this.subscriptionGetWeatherByCityID.unsubscribe();
+    this.subscriptionGetForecastByLocationID.unsubscribe();
+  }
 
-    return time;
+  loadCityData(id) {
+    this.subscriptionGetWeatherByCityID =
+      this.weatherService.getWeatherByCityID(id)
+        .subscribe(data => {
+          this.dataWeather = data;
+          this.dataWeather.main.temp = Math.round(this.dataWeather.main.temp * 10) / 10;
+          this.dataWeather.sys.sunrise = format(fromUnixTime(this.dataWeather.sys.sunrise), 'HH:mm');
+          this.dataWeather.sys.sunset = format(fromUnixTime(this.dataWeather.sys.sunset), 'HH:mm');
+
+        }, err => console.error(err));
+  }
+
+  loadCityForecast(id) {
+    this.subscriptionGetForecastByLocationID =
+      this.weatherService.getForecastByLocationID(id)
+        .subscribe(data => {
+          this.arrForecast = data.list;
+          this.arrForecast.map(data => {
+            data.dt = fromUnixTime(data.dt);
+            data.main.temp_max = Math.round(data.main.temp_max * 10) / 10;
+            data.main.temp_min = Math.round(data.main.temp_min * 10) / 10;
+          });
+        }, err => console.error(err));
   }
 
 }

@@ -14,6 +14,7 @@
 .header-info p{
     font-size: 14px;
     margin: 0;
+    opacity: 0.5;
 }
 
 .card {
@@ -23,7 +24,7 @@
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
 }
 .card .card-body {
-    padding: 40px
+  padding: 40px
 }
 
 .weatherInfo {
@@ -37,7 +38,6 @@ border-radius: 4px;
 .temperature {
   padding: 15px 0;
   font-weight: bold;
-  /* flex: 1 100%; */
   height: 60%;
   display: flex;
   align-items: center;
@@ -46,6 +46,7 @@ border-radius: 4px;
   background: #f0f0f0;
   display: flex;
   color: #3c3c3c;
+  opacity: 0.75;
 }
 
 .clouds {
@@ -60,6 +61,7 @@ border-radius: 4px;
 }
 .clouds p {
   color: #3c3c3c;
+  opacity: 0.75;
   font-style: italic;
   font-size: 14px;
 }
@@ -99,4 +101,70 @@ border-radius: 4px;
 .details pre:nth-child(3) span,
 .details pre:nth-child(4) span {
   font-weight: normal;
+}
+
+.title-forecast {
+  padding: 0 8px;
+  margin-top: 50px;
+}
+
+.title-forecast p {
+  font-size: 24px;
+  color: #3c3c3c;
+}
+
+.title-forecast p span {
+  font-size: 12px;
+  color: #3c3c3c;
+  opacity: 0.5;
+  font-style: italic;
+}
+
+.list-forecast {
+  height: 96px;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 0;
+}
+
+.list-forecast .row:first-child {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.list-forecast [class^='col-md']:first-child {
+  padding-left: 40px;
+}
+.list-forecast [class^='col-md']:first-child p {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3c3c3c;
+  margin-bottom: 5px;
+}
+.list-forecast [class^='col-md']:first-child span {
+  opacity: 0.5;
+  font-size: 12px;
+  color: #3c3c3c;
+}
+
+.list-forecast [class^='col-md']:nth-child(2) span {
+  opacity: 0.75;
+  color: #3c3c3c;
+  font-style: italic;
+  padding-left: 16px;
+}
+
+.list-forecast [class^='col-md']:nth-child(3) span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.list-forecast [class^='col-md']:nth-child(3) span:first-child {
+  color: #b30000;
+  width: 60px;
+  padding-right: 20px;
+}
+.list-forecast [class^='col-md']:nth-child(3) span:nth-child(2) {
+  color: #4a90e2;
 }

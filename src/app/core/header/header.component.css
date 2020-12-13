@@ -30,3 +30,43 @@ header .header-item p {
     font-size: 20px;
     color: #FFF;
 }
+
+.form-control {
+    height: calc(2.1em + .75rem + 2px);
+    border-radius: 4px;
+}
+
+.input-group {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.input-group-text {
+    line-height: normal;
+    background-color: #FFF;
+}
+
+.input-group-append i {
+    font-size: 24px;
+    color: #39a3db;
+}
+
+input:focus,
+input:active
+{
+    outline: none !important;
+    border-color: initial;
+    border: none;
+}
+
+.btn-back {
+ position: relative;
+ top: -22%;
+ left: 2%;
+ display: flex;
+ cursor: pointer;
+}
+.btn-back i {
+ font-size: 24px;
+ font-weight: bold;
+ color: #ffffff;
+}

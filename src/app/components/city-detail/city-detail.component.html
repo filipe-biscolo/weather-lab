@@ -1,6 +1,6 @@
 <div class="row clearfix">
   <div class="col-md-12 header-info">
-    <h1>Wheather in {{dataWeather.name}}, {{dataWeather.sys.country}}</h1>
+    <h1>Weather in {{dataWeather.name}}, {{dataWeather.sys.country}}</h1>
     <p>{{dateNow | date:'HH:mm MMM d' }}</p>
   </div>
 </div>
@@ -21,6 +21,31 @@
           <pre>Sunset <span>&#09;{{dataWeather.sys.sunset}}</span></pre>
         </div>
     </div>
-    <div class="row clearfix"></div>
+    <div class="row clearfix">
+      <div class="col-md-12 title-forecast">
+        <p>5 day weather forecast <span>every 3 hours</span></p>
+      </div>
+    </div>
+
+    <div class="row clearfix" *ngFor="let day of arrForecast; let i=index">
+      <div class="col-md-12 list-forecast"
+      [ngStyle]="i==0 && { 'border-left': '8px solid #39a3db', 'background-color': '#F7F7F7' }">
+        <div class="row clearfix">
+          <div class="col-md-3"
+          [ngStyle]="i==0 && { 'padding-left': '32px' }">
+            <p>{{day.dt | date:'E d MMM' }}</p>
+            <span>{{day.dt | date:'HH:mm' }}</span>
+          </div>
+          <div class="col-md-4">
+            <img src="https://openweathermap.org/img/w/{{day.weather[0].icon}}.png" alt="">
+            <span>{{day.weather[0].main}}</span>
+          </div>
+          <div class="col-md-5">
+            <span>{{day.main.temp_max }}&deg;C</span><span>{{day.main.temp_min }}&deg;C</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

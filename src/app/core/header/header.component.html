@@ -3,24 +3,26 @@
   'header-search':url==='search',
   'header-details':url==='details'
   }">
+  <div class="btn-back" *ngIf="url==='details'" (click)="backPage()"><i class="ion-android-arrow-back"></i></div>
   <section class="container column">
     <div class="header-item" *ngIf="url==='search'">
       <p>WEATHER IN YOUR CITY</p>
     </div>
+    
     <div class="header-item">
-      <form [formGroup]="formulario">
-      <div class="input-group mb-3">
+      <form [formGroup]="form">
+      <div class="input-group">
         <input
           type="text"
-          class="form-control"
+          class="form-control py-2 border-right-0 border"
           placeholder="Your city name"
           aria-label="Your city name"
           aria-describedby="basic-addon2"
           id="search"
           formControlName="search">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">Button</button>
-        </div>
+          <span class="input-group-append">
+            <div class="input-group-text"><i class="ion-search"></i></div>
+        </span>
       </div>
       </form>
     </div>
