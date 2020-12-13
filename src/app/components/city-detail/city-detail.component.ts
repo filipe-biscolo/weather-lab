@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { WeatherService } from '../weather.service';
+import { Subscription } from 'rxjs';
 
 import fromUnixTime from 'date-fns/fromUnixTime';
 import format from 'date-fns/format'
-import { Subscription } from 'rxjs';
+import { WeatherService } from 'src/app/shared/services/weather.service';
+import { ListForecast } from 'src/app/shared/interfaces/list-forecast';
+import { BodyWeather } from 'src/app/shared/interfaces/body-weather';
 
 @Component({
   selector: 'app-city-detail',
@@ -13,8 +15,8 @@ import { Subscription } from 'rxjs';
 })
 export class CityDetailComponent implements OnInit, OnDestroy {
 
-  dataWeather: any;
-  arrForecast: Array<any> = [];
+  dataWeather: BodyWeather;
+  arrForecast: Array<ListForecast> = [];
   dateNow = new Date();
 
   private subscriptionActivatedRoute: Subscription;

@@ -1,15 +1,15 @@
 header{
-    display: flex;
-    align-items: center;
-    background-color: #39a3db;
+  display: flex;
+  align-items: center;
+  background-color: #39a3db;
 }
 .header-search {
-    height: 300px;
-    transition: 1s;
+  height: 300px;
+  transition: 1s;
 }
 .header-details {
-    height: 120px;
-    transition: 1s;
+  height: 120px;
+  transition: 1s;
 }
 
 .column {
@@ -23,50 +23,42 @@ header{
 }
 
 header .header-item {
-    flex: 1;
+  flex: 1;
 	text-align: center;
 }
 header .header-item p {
-    font-size: 20px;
-    color: #FFF;
+  font-size: 20px;
+  color: #FFF;
 }
 
 .form-control {
-    height: calc(2.1em + .75rem + 2px);
-    border-radius: 4px;
+  height: calc(2.1em + .75rem + 2px);
+  border-radius: 4px;
 }
 
 .input-group {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .input-group-text {
-    line-height: normal;
-    background-color: #FFF;
+  line-height: normal;
+  background-color: #FFF;
 }
 
 .input-group-append i {
-    font-size: 24px;
-    color: #39a3db;
-}
-
-input:focus,
-input:active
-{
-    outline: none !important;
-    border-color: initial;
-    border: none;
+  font-size: 24px;
+  color: #39a3db;
 }
 
 .btn-back {
- position: relative;
- top: -22%;
- left: 2%;
- display: flex;
- cursor: pointer;
+  position: relative;
+  top: -22%;
+  left: 2%;
+  display: flex;
+  cursor: pointer;
 }
 .btn-back i {
- font-size: 24px;
- font-weight: bold;
- color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
 }

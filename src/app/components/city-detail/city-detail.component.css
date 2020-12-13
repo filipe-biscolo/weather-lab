@@ -1,20 +1,20 @@
 .row {
-    margin: 0;
+  margin: 0;
 }
 
 .header-info {
-    text-align: center;
-    color: #3c3c3c;
-    padding: 40px 0 32px 0;
+  text-align: center;
+  color: #3c3c3c;
+  padding: 40px 0 32px 0;
 }
 .header-info h1{
-    font-size: 36px;
-    margin-bottom: 5px;
+  font-size: 36px;
+  margin-bottom: 5px;
 }
 .header-info p{
-    font-size: 14px;
-    margin: 0;
-    opacity: 0.5;
+  font-size: 14px;
+  margin: 0;
+  opacity: 0.5;
 }
 
 .card {
@@ -28,11 +28,11 @@
 }
 
 .weatherInfo {
-flex: 0 0 32%;
-height: 81%;
-align-items: center;
-border: solid 2px #f0f0f0;
-border-radius: 4px;
+  flex: 0 0 32%;
+  height: 81%;
+  align-items: center;
+  border: solid 2px #f0f0f0;
+  border-radius: 4px;
 }
 
 .temperature {
@@ -127,6 +127,11 @@ border-radius: 4px;
   padding: 0;
 }
 
+.list-mark {
+  border-left: 8px solid #39a3db;
+  background-color: #F7F7F7;
+}
+
 .list-forecast .row:first-child {
   height: 100%;
   display: flex;
@@ -167,4 +172,42 @@ border-radius: 4px;
 }
 .list-forecast [class^='col-md']:nth-child(3) span:nth-child(2) {
   color: #4a90e2;
+}
+
+
+@media only screen and (max-width: 640px) {
+  .card .card-body {
+    padding: 20px
+  }
+
+  .weatherInfo {
+    flex: 1 0 32%;
+    margin-bottom: 15px;
+  }
+  .details {
+    margin-left: 5px;
+  }
+
+  .list-forecast {
+    height: auto;
+    padding: 10px 0;
+  }
+  .list-forecast [class^='col-md'] {
+    padding: 0 5px;
+    text-align: center;
+  }
+  .list-forecast [class^='col-md']:first-child {
+    padding-left: 15px;
+  }
+  .list-forecast.list-mark [class^='col-md']:first-child {
+    padding-left: 7px!important;
+  }
+
+  
+  
+  .list-forecast [class^='col-md']:nth-child(2) span {
+    padding-left: 5px;
+  }
+
+
 }

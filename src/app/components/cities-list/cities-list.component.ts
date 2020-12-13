@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { WeatherService } from '../weather.service';
+import { WeatherService } from 'src/app/shared/services/weather.service';
+import { ListFind } from 'src/app/shared/interfaces/list-find';
+
 
 @Component({
   selector: 'app-cities-list',
@@ -11,7 +13,7 @@ import { WeatherService } from '../weather.service';
 })
 export class CitiesListComponent implements OnInit, OnDestroy {
 
-  public arrCities = [];
+  public arrCities: Array<ListFind> = [];
 
   private subscriptionSendHeaderChange: Subscription;
 
@@ -24,7 +26,7 @@ export class CitiesListComponent implements OnInit, OnDestroy {
     this.weatherService.sendHeaderChange('search');
     this.subscriptionSendHeaderChange =
       WeatherService.sendCity.subscribe(data => {
-        this.arrCities = data.list;
+        this.arrCities = data;
         this.arrCities.map(city => {
           city.main.temp = Math.round(city.main.temp * 10) / 10;
           city.main.temp_max = Math.round(city.main.temp_max * 10) / 10;

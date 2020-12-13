@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { WeatherService } from 'src/app/components/weather.service';
-
-import { delay, map, switchMap, tap } from 'rxjs/operators';
-import { empty, Subscription } from 'rxjs';
 import { Location } from '@angular/common'
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { delay, map, switchMap } from 'rxjs/operators';
+import { empty, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+
+import { WeatherService } from 'src/app/shared/services/weather.service';
 
 @Component({
   selector: 'app-header',
@@ -39,23 +39,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscriptionGetByCityName = 
     this.form.get('search').valueChanges
     .pipe(
-      // tap(() => this.form.get('search').value === '' ? this.clearList(): empty()),
       map(() => this.url === 'lista' ? '' : this.router.navigate([''])),
-      delay(1500),
-      switchMap(data => this.form.get('search').value && this.form.get('search').value !== '' ?
-         this.weatherService.getByCityName(this.form.get('search').value): empty()),
-      tap(console.log)
+      delay(1200),
+      switchMap(() => this.form.get('search').value && this.form.get('search').value !== '' ?
+         this.weatherService.getByCityName(this.form.get('search').value): this.clearList())
     )
     .subscribe(data => {
-      console.log('Data: ', data);
       this.weatherService.sendCity(data);
     },
-    err => console.error(err));
+    err => { console.error(err); });
   }
 
   clearList(){
     let data = [];
     this.weatherService.sendCity(data);
+    return empty();
   }
 
   ngOnDestroy() {
